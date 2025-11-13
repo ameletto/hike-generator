@@ -1,51 +1,14 @@
-<h1 align="center">A companion for mindful wandering</h1>
+Go on a walk without your phone where you don't know where you're going just that you'll end up where you started!
 
-<br> <!-- Additional spacing -->
-<br> <!-- Additional spacing -->
-
-##  Designed with the science of AI and the wisdom of mindfulness, a pocket-sized compass that lets you wander without getting lost. Leave your phone behind and reconnect with your surroundings.
-
-
-<br> <!-- Additional spacing -->
-
-### Features
-- **Improvised Trails, Powered by AI**: Every journey begins with a prompt. AI translates your intentions, available time, and precise location into a tailored trail of GPS coordinates. Users don't know where they will be taken; the only certainty is finding their way back to the starting point.
-- **Wander Without Your Phone**: Users are invited to leave their smartphones behind and reconnect with their surroundings. The standalone device boasts a minimalist interface, featuring a tranquil compass needle and gentle haptic feedback to ensure users remain engaged with the present moment.  
-
-<br> <!-- Additional spacing -->
-
-<p align="center">
-  ⚠️ <strong>NOTICE</strong>: This project is currently in an experimental phase and is undergoing rapid developments ⚠️
-</p>
-
-<br> <!-- Additional spacing -->
-
-
-### Software
-
-The app generates coordinates or checkpoints from a starting point and an ideal trail length using the ChatGPT API.
-
-#### Prerequisites 
-- `Node.js` v21.5
-- `body-parser` v1.20.2
-- `cors` v2.8.5
-- `express` v4.19.0
-- `node-fetch` v3.3.2
-
-To run the app locally, follow these steps:
-
-1. **Implement ChatGPT API Key:** Obtain a [ChatGPT API key](https://platform.openai.com/) and replace ```YOUR_OPENAI_API_KEY``` with it in the ```server.js``` file.
-2. **Implement Google Maps API Key:** Obtain a [Google Places API key](https://developers.google.com/maps/documentation/places/web-service/overview) and replace ```YOUR_MAPS_KEY``` with it in the ```index.js``` file.
-3. **Run Locally:** To run the application, use the command:
+1. **Run Locally:** To run the application, use the command:
     ```
     node server.js
     ```
-4. **Load Application:** Open `index.html` in a browser to use the app for generating a route.
-5. **Download config.h File:** Download the `config.h` file which contains the generated route configuration.
-6. **Update Arduino Code:** Replace the `config.h` file in the Arduino code directory with the newly downloaded file.
+2. **Load Application:** Open `index.html` in a browser to use the app for generating a route.
+3. **Download config.h File:** Download the `config.h` file which contains the generated route configuration.
+4. **Update Arduino Code:** Replace the `config.h` file in the Arduino code directory with the newly downloaded file.
 
 ### Hardware
-
 
 The hardware is based on an ESP32 device, equipped with a range of sensors for navigation and interaction.
 
@@ -63,7 +26,6 @@ The main components required are:
 - USB C charging port extender
 
 ### Wiring
-Connect the components together in the following order:
 
 | ESP32 Pin | Screen | Motor Driver | Compass | GPS | Push Button |
 | --------- | ------ | ------------ | ------- | --- | ----------- |
@@ -80,37 +42,3 @@ Connect the components together in the following order:
 | SCL       |        | SCL          | SCL     |     |             |
 | RX        |        |              |         | TX  |             |
 | TX        |        |              |         | RX  |             |
-
-## Arduino Code
-
-To run the Arduino code, you will need to set up the ESP32 board and install the necessary libraries.
-
-### Setup Steps
-
-1. **ESP32 Arduino Setup:** Add the ESP32 board to the Arduino IDE.
-    - Go to **Arduino > Preferences**.
-    - Add the following URL to the **Additional Boards Manager URLs**:
-      ```
-      https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json
-      ```
-    - Select **Adafruit Feather ESP32 V2** as the board.
-
-2. **Install Libraries:** Install the following libraries through the Library Manager in the Arduino IDE.
-    - `TinyGPSPlus.h`
-    - `TFT_eSPI.h`
-    - `Adafruit_DRV2605.h`
-
-
-3. **Upload the Code:** After installing the libraries and updating the `config.h` file with new coordinates, upload the code to the ESP32 device. The device should work without further adjustments.
-
-4. **Debug Mode:** A `debugMode` flag is available in the code. To test the device with manual coordinates, set this flag to `true` and input coordinates into the serial monitor.
-
-### Further Customizations
-
-You can use your own checkpoint files by converting black and white images into a compatible format.
-
-#### Using Your Own Checkpoint Files
-
-- Convert static black and white, 240x240PX `.bmp` images to `.XBM` format using [this online tool](https://www.online-utility.org/image/convert/to/XBM).
-- Open the XBM file in a text editor and copy the hexadecimal values included in the curly brackets.
-- Replace the existing files in the `images/checkpoints` directory with your customized `.h` file.
